@@ -22,6 +22,10 @@ final class BookListView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func showEmptyLabel(isShow: Bool = true) {
+        listGuideLabel.isHidden = false
+    }
+    
     private func setupLayout() {
         insertUI()
         basicSetUI()
@@ -35,13 +39,16 @@ final class BookListView: UITableView {
     func basicSetUI() {
         backgroundColor = .systemBackground
         tableFooterView = UIView()
+        
         registerCell(BookTableViewCell.self)
+        registerCell(SearchLoadingTableCell.self)
         
         listGuideLabel.font = .boldSystemFont(ofSize: 20)
         listGuideLabel.backgroundColor = .systemBackground
         listGuideLabel.textColor = .systemBlue
         listGuideLabel.textAlignment = .center
         listGuideLabel.text = guideText
+        listGuideLabel.isHidden = true
     }
     
     func anchorUI() {
@@ -52,8 +59,3 @@ final class BookListView: UITableView {
     }
 }
 
-extension BookListView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-}
