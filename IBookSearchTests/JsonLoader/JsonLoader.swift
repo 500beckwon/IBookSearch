@@ -7,13 +7,6 @@
 
 import Foundation
 
-private enum JsonLoaderError: Error {
-    case unknownFile
-    case dataConvertFail
-    case notJsonData
-    case decodeFail
-}
-
 final class JsonLoader {
     static func load<T: Decodable>(type: T.Type, fileName: String) -> T? {
         do {
