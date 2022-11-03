@@ -12,7 +12,6 @@ final class BookTableViewCell: UITableViewCell {
     public private(set) var bookTitleLabel = UILabel()
     public private(set) var bookInfoLabel  = UILabel()
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         setupLayout()
@@ -20,10 +19,16 @@ final class BookTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        bookImageView.image = nil
+        bookTitleLabel.text = nil
+        bookInfoLabel.text = nil
     }
     
-    func configureCell(_ book: Book) {
-        
+    func configureCell(_ book: Book?) {
+        guard let book = book else { return }
+        bookTitleLabel.text = book.title
+        bookInfoLabel.text = book.subTitle
+        bookImageView.setImageUrl(book.isbnNumber)
     }
 }
 
@@ -69,16 +74,17 @@ private extension BookTableViewCell {
         bookTitleLabel
             .anchor(top: contentView.topAnchor,
                     paddingTop: 30,
-                    leading: bookTitleLabel.trailingAnchor,
+                    leading: bookImageView.trailingAnchor,
                     paddingLeading: 15,
                     trailing: bookInfoLabel.trailingAnchor,
                     paddingTrailing: 16)
         
-        bookInfoLabel.anchor(top: bookTitleLabel.bottomAnchor,
-                             paddingTop: 5,
-                             leading: bookImageView.trailingAnchor,
-                             paddingLeading: 15,
-                             trailing: contentView.trailingAnchor,
-                             paddingTrailing: 16)
+        bookInfoLabel
+            .anchor(top: bookTitleLabel.bottomAnchor,
+                    paddingTop: 5,
+                    leading: bookImageView.trailingAnchor,
+                    paddingLeading: 15,
+                    trailing: contentView.trailingAnchor,
+                    paddingTrailing: 16)
     }
 }
