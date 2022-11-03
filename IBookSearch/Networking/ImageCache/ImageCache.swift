@@ -31,7 +31,8 @@ final class ImageCache {
         }
     }
     
-    func setCache(imageName: String, image: UIImage) {
+    func setCache(imageName: String,
+                  image: UIImage) {
         imageCache.setObject(image, forKey: NSString(string: imageName))
     }
     
@@ -52,7 +53,8 @@ final class ImageCache {
         }
     }
     
-    func setDiskCache(imageName: String, imageData: Data) {
+    func setDiskCache(imageName: String,
+                      imageData: Data) {
         guard let cachesDirectory = fileManager.urls(for: .cachesDirectory,
                                                      in: .userDomainMask).first else { return }
         let dataPath = cachesDirectory.appendingPathComponent("DiskCache")
