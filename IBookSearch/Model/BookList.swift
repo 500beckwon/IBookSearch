@@ -9,6 +9,6 @@ import Foundation
 
 struct BookList: Codable {
     let total: String
-    let page: String
+    let page: String?
     let books: [Book]
 }
