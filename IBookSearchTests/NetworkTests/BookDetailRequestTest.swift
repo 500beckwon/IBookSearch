@@ -29,16 +29,16 @@ class BookDetailRequestTest: XCTestCase {
                                                      data: data,
                                                      statusCode: 200)
         
-        let bookDetailFetch: NetworkRequest<Book> = NetworkRequest(apiRequest: apiRequest,
+        let bookDetailFetch: NetworkRequest<DetailBook> = NetworkRequest(apiRequest: apiRequest,
                                                                         session: mockNetworkSession)
-        var bookDetail: Book?
+        var bookDetail: DetailBook?
         bookDetailFetch.requestFetch { result in
-            bookDetail = try? result.get()
+           bookDetail = try? result.get()
         }
         
-        let expectation: Book? = JsonLoader.load(type: Book.self, fileName: "DetailBook")
-        XCTAssertEqual(bookDetail?.title, expectation?.title)
-        XCTAssertEqual(bookDetail?.title, expectation?.title)
+        let expectation = JsonLoader.load(type: DetailBook.self, fileName: "DetailBook")
+        XCTAssertEqual(bookDetail?.authors, expectation?.authors)
+        XCTAssertEqual(bookDetail?.authors, expectation?.authors)
     }
     
     func testRequestFailureDetailBook() throws {
