@@ -28,6 +28,7 @@ final class BookListViewController: UIViewController {
         setupLayout()
         setConfigurehandler()
         loadNewBookList()
+        setNotificationCenter()
     }
 }
 
@@ -57,6 +58,23 @@ private extension BookListViewController {
         DispatchQueue.main.async { [weak self] in
             self?.bookListView.reloadData()
         }
+    }
+    
+    @objc
+    func scrollNotification(_ notification: Notification) {
+        if let index = notification.object as? Int {
+            guard index < viewModel.listCount else { return }
+            bookListView.scrollToRow(at: [0, index], at: .top, animated: false)
+        }
+    }
+    
+    func setNotificationCenter() {
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(scrollNotification),
+                         name: .scrollCurrentCell,
+                         object: nil)
     }
 }
 
@@ -118,7 +136,8 @@ extension BookListViewController: UITableViewDataSource {
 
 extension BookListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let vc = BookDetailViewController(bookList: viewModel.bookListInfo, selectIndex: indexPath.row)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

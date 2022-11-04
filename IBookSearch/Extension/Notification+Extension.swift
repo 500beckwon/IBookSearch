@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+extension NSNotification.Name {
+    static let scrollCurrentCell = NSNotification.Name("ScrollCurrentCell")
+}
