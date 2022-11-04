@@ -44,11 +44,9 @@ struct DetailBook: Codable {
 }
 
 struct PDFInfo: Codable {
-    let chapterFirst: String
-    let chapterSecond: String
+    let eBook: String
 
     enum CodingKeys: String, CodingKey {
-        case chapterFirst = "Chapter 2"
-        case chapterSecond = "Chapter 5"
+        case eBook = "Free eBook"
     }
 }
