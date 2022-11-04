@@ -20,7 +20,7 @@ final class BookListRequest {
     }
     
     static func requestDetailBook(isbn: String,
-                                  completion: @escaping((Result<Book, Error>) -> Void)) {
+                                  completion: @escaping((Result<DetailBook, Error>) -> Void)) {
         NetworkRequest(apiRequest: BookListAPI.detailBook(isbn: isbn))
             .requestFetch(completion: completion)
     }
