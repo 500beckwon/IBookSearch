@@ -44,7 +44,7 @@ struct DetailBook: Codable {
 }
 
 struct PDFInfo: Codable {
-    let eBook: String
+    let eBook: String?
 
     enum CodingKeys: String, CodingKey {
         case eBook = "Free eBook"

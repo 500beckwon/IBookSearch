@@ -20,4 +20,8 @@ extension UICollectionView {
         }
         return cell
     }
+    
+    func cellForItem<T: UICollectionViewCell>(for indexPath: IndexPath) -> T? {
+        return  cellForItem(at: indexPath) as? T
+    }
 }

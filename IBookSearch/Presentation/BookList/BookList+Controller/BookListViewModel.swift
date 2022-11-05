@@ -7,12 +7,8 @@
 
 import Foundation
 
-enum BookListStyle {
-    case new
-    case search
-}
-
 class BookListViewModel {
+    
     private var page = 0
     private var isLoading = false
     private var hasNextPage = true

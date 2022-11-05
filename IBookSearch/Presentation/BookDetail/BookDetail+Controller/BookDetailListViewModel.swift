@@ -25,13 +25,16 @@ final class BookDetailListViewModel {
         return bookList[selectedIndex].title
     }
     
-    func cellItem(index: Int) -> BookDetailViewModel {
-        return BookDetailViewModel(book: bookList[index])
+    var currentBook: Book {
+        return bookList[selectedIndex]
     }
     
     init(bookList: [Book], selectedIndex: Int) {
-        print(selectedIndex)
         self.bookList = bookList
         self.selectedIndex = selectedIndex
+    }
+    
+    func cellItem(index: Int) -> BookDetailViewModel {
+        return BookDetailViewModel(book: bookList[index])
     }
 }

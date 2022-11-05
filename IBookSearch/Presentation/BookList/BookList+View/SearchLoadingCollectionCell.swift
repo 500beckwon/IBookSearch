@@ -1,13 +1,13 @@
 //
-//  SearchLoadingTableCell.swift
+//  SearchLoadingCollectionCell.swift
 //  IBookSearch
 //
-//  Created by ByungHoon Ann on 2022/11/02.
+//  Created by ByungHoon Ann on 2022/11/05.
 //
 
 import UIKit
 
-class SearchLoadingTableCell: UITableViewCell {
+final class SearchLoadingCollectionCell: UICollectionViewCell {
     private let indicator = UIActivityIndicatorView()
     
     override func layoutSubviews() {
@@ -15,7 +15,7 @@ class SearchLoadingTableCell: UITableViewCell {
         setupLayout()
     }
     
-    func setupLayout() {
+    private func setupLayout() {
         contentView.addSubview(indicator)
         
         indicator.hidesWhenStopped = true
