@@ -45,7 +45,6 @@ final class NetworkRequest<T: Codable> {
                let response = response as? HTTPURLResponse,
                200..<300 ~= response.statusCode {
                 do {
-                    print(data, url)
                     let data = try JSONDecoder().decode(T.self, from: data)
                     completion(.success(data))
                 } catch {

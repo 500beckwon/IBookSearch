@@ -27,6 +27,10 @@ class BookListViewModel {
         return bookList.count
     }
     
+    var bookListInfo: [Book] {
+        return bookList
+    }
+    
     var searchInfo: SearchInformation {
         return SearchInformation(page: page, searchText: searchText)
     }
