@@ -8,6 +8,7 @@
 import Foundation
 
 final class BookDetailViewModel {
+    
     let book: Book
     
     var isbnNumberString: String {

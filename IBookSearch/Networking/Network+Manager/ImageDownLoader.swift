@@ -8,6 +8,7 @@
 import UIKit
 
 final class ImageDownLoader {
+    
     static let shared = ImageDownLoader()
     
     func setImage(to imageView: UIImageView, isbn: String) {

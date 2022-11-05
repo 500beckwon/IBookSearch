@@ -8,6 +8,7 @@
 import UIKit
 
 final class PaddingLabel: UILabel {
+    
     var topInset: CGFloat = 10.0
     var bottomInset: CGFloat = 5.0
     var leftInset: CGFloat = 16.0

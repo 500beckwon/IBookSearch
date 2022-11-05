@@ -8,6 +8,7 @@
 import UIKit
 
 extension BookDetailViewController: BookDetailTransitionAnimatorDelegate {
+    
     func transitionWillStart() {
         collectionView.isHidden = true
     }

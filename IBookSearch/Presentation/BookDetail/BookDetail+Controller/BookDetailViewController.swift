@@ -8,6 +8,7 @@
 import UIKit
 
 final class BookDetailViewController: UIViewController {
+    
     private var backButton = UIButton(type: .system)
     public private(set) lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -22,6 +23,7 @@ final class BookDetailViewController: UIViewController {
     }()
     
     weak var transitionController: BookDetailInteractiveDismissTransition? = nil
+    
     public private(set) var isInteractivelyDismissing = false
     public private(set) var displayCell: BookDetailCollectionCell?
     

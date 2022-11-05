@@ -7,7 +7,8 @@
 
 import UIKit
 
-class TransitionImageView: UIImageView {
+public class TransitionImageView: UIImageView {
+    
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         contentMode = .scaleAspectFill
