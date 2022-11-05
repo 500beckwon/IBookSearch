@@ -7,20 +7,20 @@
 
 import UIKit
 
-final class BookDetailCollectionCell: UICollectionViewCell {
+final class BookDetailCollectionCell: BaseCollectionViewCell {
     private var scrollView = UIScrollView()
     private var containerView = UIView()
-    private var imageView = UIImageView()
+    public private(set) var imageView = UIImageView()
+    private var stackView = UIStackView()
+    
     private var titleLabel = PaddingLabel()
     private var subTitleLabel = PaddingLabel()
     private var authorLabel = PaddingLabel()
     private var detailLabel = PaddingLabel()
     private var priceLabel = PaddingLabel()
-    private var stackView = UIStackView()
     private var publisherLabel = PaddingLabel()
     private var pageCountLabel = PaddingLabel()
     private var publisherYearLabel = PaddingLabel()
-    
     private var viewModel: BookDetailViewModel?
     
     override init(frame: CGRect) {
@@ -49,9 +49,10 @@ final class BookDetailCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func detailRequest(viewModel: BookDetailViewModel) {
+    func detailRequestBook(viewModel: BookDetailViewModel) {
         self.viewModel = viewModel
         viewModel.requestBookDetail()
+        imageView.setImageUrl(viewModel.isbnNumberString)
         viewModel.resultHandler = { [weak self] bookDetail in
             guard let self = self else { return }
             guard let bookDetail = bookDetail else { return }
@@ -61,39 +62,43 @@ final class BookDetailCollectionCell: UICollectionViewCell {
         }
     }
     
-    func configureBook(detailBook: DetailBook) {
-        titleLabel.text      = "저서   :  \(detailBook.title)"
-        authorLabel.text     = "저자   : \(detailBook.authors)"
-        subTitleLabel.text   = """
-                               
-                               소개
-                               \(detailBook.subtitle)
-                               """
-        detailLabel.text     =
-                               """
-                               
-                               상세
-                               \(detailBook.descripiton)
-                               """
-        publisherLabel.text  = "출판사 : \(detailBook.publisher)"
-        pageCountLabel.text  = "장수   : \(detailBook.pages)p"
-        publisherYearLabel.text = "출간일  : \(detailBook.year)년"
-        priceLabel.text      = "가격  : \(detailBook.price)"
-        imageView.setImageUrl(detailBook.isbnLongNumber)
+    private func configureBook(detailBook: DetailBook) {
+        titleLabel.text      = detailBook.title
+        authorLabel.text     = detailBook.authors
+        subTitleLabel.text   = detailBook.subtitle
+        
+        detailLabel.attributedText = NSMutableAttributedString()
+            .bold(string: "소개", fontSize: 15)
+            .bold(string: "\n\(detailBook.descripiton)", fontSize: 13)
+        
+        publisherLabel.attributedText = NSMutableAttributedString()
+            .bold(string: "출판사", fontSize: 15)
+            .bold(string: "\n\(detailBook.publisher)", fontSize: 13)
+        
+        pageCountLabel.text  = "\(detailBook.pages)p"
+        
+        publisherYearLabel.attributedText = NSMutableAttributedString()
+            .bold(string: "출간일", fontSize: 15)
+            .bold(string: "\n\(detailBook.year)", fontSize: 13)
+        
+        priceLabel.attributedText = NSMutableAttributedString()
+            .bold(string: "가격", fontSize: 15)
+            .bold(string: "\n\(detailBook.price)", fontSize: 13)
     }
 }
 
 private extension BookDetailCollectionCell {
-    private func setupLayout() {
+    func setupLayout() {
         insertUI()
         basicSetUI()
         anchorUI()
     }
     
-    private func insertUI() {
+    func insertUI() {
         contentView.addSubview(scrollView)
         scrollView.addSubview(containerView)
         containerView.addSubview(stackView)
+        
         
         [
             imageView,
@@ -110,35 +115,53 @@ private extension BookDetailCollectionCell {
         }
     }
     
-    private func basicSetUI() {
+    func basicSetUI() {
         contentView.backgroundColor = .systemBackground
         
         stackView.axis = .vertical
-        stackView.spacing = 6
+        stackView.spacing = 2
         stackView.alignment = .fill
         stackView.distribution = .fill
+        
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         
         labelBasicSet()
     }
     
-    private func labelBasicSet() {
+    func labelBasicSet() {
         titleLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        titleLabel.numberOfLines = 3
+        titleLabel.textAlignment = .center
+        
         authorLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        authorLabel.textAlignment = .center
+        authorLabel.numberOfLines = 3
         
         subTitleLabel.numberOfLines = 0
         subTitleLabel.font = .systemFont(ofSize: 14, weight: .bold)
         
         detailLabel.numberOfLines = 0
+        detailLabel.textAlignment = .left
         detailLabel.font = .systemFont(ofSize: 14, weight: .semibold)
         
         authorLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        authorLabel.numberOfLines = 0
+        
         publisherLabel.font = .systemFont(ofSize: 14, weight: .semibold)
+        publisherLabel.numberOfLines = 0
+        
         pageCountLabel.font = .systemFont(ofSize: 12, weight: .semibold)
+        pageCountLabel.numberOfLines = 0
+        
         publisherYearLabel.font = .systemFont(ofSize: 12, weight: .semibold)
+        publisherYearLabel.numberOfLines = 0
+        
+        priceLabel.numberOfLines = 0
         priceLabel.font = .systemFont(ofSize: 12, weight: .semibold)
     }
     
-    private func anchorUI() {
+    func anchorUI() {
         scrollView
             .anchor(top: contentView.topAnchor,
                     bottom: contentView.bottomAnchor,
