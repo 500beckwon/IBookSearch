@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
@@ -19,9 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let mainViewController = BookListViewController()
         window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: mainViewController)
+        window?.rootViewController = SelectAnimationNavigationViewController(rootViewController: mainViewController)
         window?.makeKeyAndVisible()
     }
-    
 }
 
