@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BookListViewModel {
+final class BookListViewModel {
     
     private var page = 0
     private var isLoading = false

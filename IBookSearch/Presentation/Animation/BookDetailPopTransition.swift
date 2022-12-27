@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class BookDetailPopTransition: NSObject, UIViewControllerAnimatedTransitioning {
+class BookDetailPopTransition: NSObject, UIViewControllerAnimatedTransitioning {
     fileprivate let toDelegate: BookDetailTransitionAnimatorDelegate
     fileprivate let bookDetailVC: BookDetailViewController
     
@@ -25,11 +25,11 @@ public class BookDetailPopTransition: NSObject, UIViewControllerAnimatedTransiti
         self.bookDetailVC = bookDetailVC
     }
     
-    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.38
     }
     
-    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let fromView = transitionContext.view(forKey: .from)
         let toView = transitionContext.view(forKey: .to)
         let containerView = transitionContext.containerView
@@ -76,7 +76,7 @@ public class BookDetailPopTransition: NSObject, UIViewControllerAnimatedTransiti
         }
     }
     
-    public static func defaultOffscreenFrameForDismissal(transitionImageSize: CGSize,
+    static func defaultOffscreenFrameForDismissal(transitionImageSize: CGSize,
                                                          screenHeight: CGFloat) -> CGRect {
         return CGRect(
             x: 0,

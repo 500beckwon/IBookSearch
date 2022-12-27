@@ -18,7 +18,7 @@ final class NetworkRequest<T: Codable> {
         self.session = session
     }
     
-    public func makeURL(_ apiRequest: APIRequest) -> URL? {
+    func makeURL(_ apiRequest: APIRequest) -> URL? {
         var urlComponents = URLComponents(string: apiRequest.urlString)
         if let parameters = apiRequest.parameters {
             let query = parameters.map {
@@ -31,7 +31,7 @@ final class NetworkRequest<T: Codable> {
         return urlComponents?.url
     }
     
-    public func requestFetch(completion: @escaping((Result<T, Error>) -> Void)) {
+    func requestFetch(completion: @escaping((Result<T, Error>) -> Void)) {
         guard let url = makeURL(apiRequest) else {
             completion(.failure(NetworkError.badURL))
             return }
@@ -57,7 +57,7 @@ final class NetworkRequest<T: Codable> {
         dataTask.resume()
     }
     
-    public func requestImage(completion: @escaping((Result<Data,Error>) -> Void)) {
+    func requestImage(completion: @escaping((Result<Data,Error>) -> Void)) {
         guard let url = makeURL(apiRequest) else {
             completion(.failure(NetworkError.badURL))
             return }

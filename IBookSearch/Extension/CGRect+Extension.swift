@@ -17,7 +17,6 @@ extension CGRect {
         if touchesHorizontalSides {
             let height = rect.width / imageRatio
             let height2 = rect.height / imageRatio
-            //let yPoint = rect.minY + (rect.height - height) / 2
             let yPoint = height2 - rect.height
             result = CGRect(x: 0, y: yPoint, width: rect.width, height: height)
         } else {
