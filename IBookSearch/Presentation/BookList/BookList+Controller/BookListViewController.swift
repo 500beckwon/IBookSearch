@@ -11,7 +11,7 @@ final class BookListViewController: UIViewController {
     
     private lazy var searchController = UISearchController(searchResultsController: nil)
     private lazy var emptyLabel = UILabel()
-    public private(set) var collectionView: UICollectionView = {
+    private(set) var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 1

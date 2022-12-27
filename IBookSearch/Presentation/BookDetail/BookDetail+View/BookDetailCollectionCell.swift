@@ -11,7 +11,7 @@ final class BookDetailCollectionCell: BaseCollectionViewCell {
     
     private var scrollView = UIScrollView()
     private var containerView = UIView()
-    public private(set) var imageView = UIImageView()
+    private(set) var imageView = UIImageView()
     private var stackView = UIStackView()
     private var titleLabel = PaddingLabel()
     private var subTitleLabel = PaddingLabel()

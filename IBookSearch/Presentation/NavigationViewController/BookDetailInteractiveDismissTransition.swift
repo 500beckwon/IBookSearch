@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class BookDetailInteractiveDismissTransition: NSObject {
+final class BookDetailInteractiveDismissTransition: NSObject {
     
     fileprivate let fromDelegate: BookDetailTransitionAnimatorDelegate
     fileprivate weak var toDelegate: BookDetailTransitionAnimatorDelegate?
@@ -122,17 +122,17 @@ public class BookDetailInteractiveDismissTransition: NSObject {
 }
 
 extension BookDetailInteractiveDismissTransition: UIViewControllerAnimatedTransitioning {
-    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3
     }
     
-    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         fatalError()
     }
 }
 
 extension BookDetailInteractiveDismissTransition: UIViewControllerInteractiveTransitioning {
-    public func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
+    func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         self.transitionContext = transitionContext
         
         let containerView = transitionContext.containerView

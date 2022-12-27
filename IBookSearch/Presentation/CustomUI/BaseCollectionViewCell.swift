@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class BaseCollectionViewCell: UICollectionViewCell {
+class BaseCollectionViewCell: UICollectionViewCell {
     
     var bookImageView = UIImageView()
 }

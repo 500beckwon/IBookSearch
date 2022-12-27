@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SelectAnimationNavigationViewController: UINavigationController {
+final class SelectAnimationNavigationViewController: UINavigationController {
     
     fileprivate var currentAnimationTransition: UIViewControllerAnimatedTransitioning? = nil
     
@@ -41,14 +41,14 @@ extension SelectAnimationNavigationViewController: UINavigationControllerDelegat
         return result
     }
     
-    public func navigationController(
+    func navigationController(
         _ navigationController: UINavigationController,
         interactionControllerFor animationController: UIViewControllerAnimatedTransitioning
     ) -> UIViewControllerInteractiveTransitioning? {
         return self.currentAnimationTransition as? UIViewControllerInteractiveTransitioning
     }
     
-    public func navigationController(
+    func navigationController(
         _ navigationController: UINavigationController,
         didShow viewController: UIViewController,
         animated: Bool

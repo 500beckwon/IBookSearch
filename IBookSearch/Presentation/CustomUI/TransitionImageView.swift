@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class TransitionImageView: UIImageView {
+final class TransitionImageView: UIImageView {
     
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)

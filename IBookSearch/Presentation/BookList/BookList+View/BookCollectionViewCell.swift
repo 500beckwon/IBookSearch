@@ -9,7 +9,7 @@ import UIKit
 
 final class BookCollectionViewCell: BaseCollectionViewCell {
     
-    public private(set) var bookInfoLabel  = UILabel()
+    private(set) var bookInfoLabel  = UILabel()
     private var stackView = UIStackView()
     private var selectedView = UIView()
     private var titleLabel = UILabel()
